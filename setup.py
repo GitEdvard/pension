@@ -34,7 +34,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'pension=pension.cli:cli_main',
+            'pension=pension_calc.cli:cli_main',
         ],
     },
 )

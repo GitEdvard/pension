@@ -7,9 +7,7 @@ class Config:
 
     def open_config(self):
         here = os.path.dirname(__file__)
-        path = os.path.join(here, 'resources/data.yml')
+        path = os.path.join(here, '/home/edvard/sources/real/pension/resources/data.yml')
         with open(path, 'r') as file:
-            config = yaml.load(file)
-        name = config["name"]
-        print(f"name: {name}")
+            config = yaml.load(file, Loader=yaml.FullLoader)
         return config

@@ -1,5 +1,5 @@
 import click
-
+from pension_calc.config import Config
 
 @click.group()
 @click.option('--whatif/--not-whatif', default=False)
@@ -11,7 +11,10 @@ def cli(ctx, whatif):
 @cli.command("calculate")
 @click.pass_context
 def create_cand(ctx):
-    print("hello")
+    config_opener = Config()
+    config = config_opener.open_config()
+    name = config["name"]
+    print(f"name: {name}")
 
 
 def cli_main():
