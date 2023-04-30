@@ -1,1 +1,4 @@
 # pension
+
+## Usage
+```\> pension calculate```

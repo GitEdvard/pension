@@ -12,7 +12,7 @@ def cli(ctx, whatif):
 @click.pass_context
 def create_cand(ctx):
     config_opener = Config()
-    config = config_opener.open_config()
+    config = config_opener.open()
     name = config["name"]
     print(f"name: {name}")
 

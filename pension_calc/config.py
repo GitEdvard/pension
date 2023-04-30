@@ -5,7 +5,7 @@ class Config:
     def __init__(self):
         pass
 
-    def open_config(self):
+    def open(self):
         here = os.path.dirname(__file__)
         path = os.path.join(here, '/home/edvard/sources/real/pension/resources/data.yml')
         with open(path, 'r') as file:
