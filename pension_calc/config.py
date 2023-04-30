@@ -15,3 +15,7 @@ class Config:
         self.savings = config_dict["savings"]
         self.age_of_pension = config_dict["age_of_pension"]
         self.annual_growth = config_dict["annual_growth"]
+        self.amortalization = config_dict["amortalization"]
+        self.monthly_fee = config_dict["monthly_fee"]
+        self.interest_current = config_dict["interest_current"]
+        self.loan_size = config_dict["loan_size"]
