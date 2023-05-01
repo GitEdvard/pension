@@ -1,0 +1,3 @@
+[develop]
+
+disable=consider-using-f-string, missing-function-docstring, missing-module-docstring
