@@ -6,3 +6,5 @@ class Growth:
         self.savings_from_monthly = None
         self.savings_at_pension = None
         self.total_monthly_payment  = None
+        self.age_of_pension = None
+        self.monthly_saving = None

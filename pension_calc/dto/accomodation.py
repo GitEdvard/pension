@@ -5,3 +5,4 @@ class Accomodation:
         self.amortalization = None
         self.monthly_cost = None
         self.monthly_payment = None
+        self.interest_current = None

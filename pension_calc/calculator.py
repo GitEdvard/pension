@@ -20,6 +20,7 @@ class Calculator:
         a.amortalization = self.config.amortalization
         a.monthly_cost = a.monthly_interest + a.monthly_fee
         a.monthly_payment = monthly_interest_gross + a.monthly_fee + a.amortalization
+        a.interest_current = self.config.interest_current
         return a
 
     def pension_payment(self):
@@ -42,4 +43,6 @@ class Calculator:
         # geometric series
         g.return_from_monthly = monthly_saving * (1 - math.pow(r, number_months)) / (1 - r)
         g.savings_at_pension = g.return_from_monthly + g.return_on_initial
+        g.age_of_pension = self.config.age_of_pension
+        g.monthly_saving = self.config.monthly_saving
         return g
