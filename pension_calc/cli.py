@@ -1,4 +1,3 @@
-from os import walk
 import click
 from pension_calc.calculator import Calculator
 from pension_calc.presenter import Presenter
@@ -15,8 +14,17 @@ def cli(ctx, whatif):
 @click.pass_context
 def accomodation(ctx):
     calculator = Calculator()
-    a = calculator.accomodation_cost()
+    a = calculator.accomodation_cost_now()
     ctx.obj["presenter"].accomodation(a)
+
+
+@cli.command("accomodation_pension")
+@click.pass_context
+def accomodation_pension(ctx):
+    calculator = Calculator()
+    a = calculator.accomodation_cost_pension()
+    ctx.obj["presenter"].accomodation_pension(a)
+
 
 
 @cli.command("growth")
@@ -27,9 +35,9 @@ def growth(ctx):
     ctx.obj["presenter"].growth(g)
 
 
-@cli.command("pension_payment")
+@cli.command("payment")
 @click.pass_context
-def pension_payment(ctx):
+def payment(ctx):
     calculator = Calculator()
     p = calculator.pension_payment()
     ctx.obj["presenter"].payment(p)

@@ -10,6 +10,19 @@ class Presenter:
                 .format(fmt(a.monthly_payment)))
 
     @staticmethod
+    def accomodation_pension(a):
+        print("Annual inlation: {}%".format(a.inflation))
+        print("Interest at pension: {}%".format(a.interest_pension))
+        print("Monthly amortalization: {} kr".format(fmt(a.amortalization)))
+        print("Current loan size: {} kr".format(fmt(a.loan_size)))
+        print("Loan at pension acconting only amortalization: {} kr"\
+                .format(fmt(a.loan_at_pension_amo_only)))
+        print("Loan at pension acconting for inflation only {} kr"\
+                .format(fmt(a.loan_after_inflation_no_amo)))
+        print("Loan at pension acconting both inflation and amortalization: {} kr"\
+                .format(fmt(a.loan_at_pension)))
+
+    @staticmethod
     def growth(g):
         print("Annual growth: {:.1f}%".format(g.annual_growth))
         print("Initial savings: {} kr".format(fmt(g.savings)))
@@ -25,6 +38,9 @@ class Presenter:
         print("Pension tax: {:.1f}%".format(p.pension_tax))
         print("Gross pension: {} kr".format(fmt(p.pension_gross)))
         print("Net pension: {} kr".format(fmt(p.pension_net)))
+        print("Age of death: {}".format(p.age_of_death))
+        print("Monthly payment from savings: {} kr".format(fmt(p.monthly_payment_from_savings)))
+        print("Total monthly payment: {} kr".format(fmt(p.monthly_payment_from_savings + p.pension_net)))
 
 
 def fmt(amount):
