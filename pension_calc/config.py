@@ -19,3 +19,5 @@ class Config:
         self.monthly_fee = config_dict["monthly_fee"]
         self.interest_current = config_dict["interest_current"]
         self.loan_size = config_dict["loan_size"]
+        self.pension_gross = config_dict["pension_gross"]
+        self.pension_tax = config_dict["pension_tax"]

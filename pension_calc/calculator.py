@@ -1,4 +1,5 @@
 import datetime
+import math
 from pension_calc.config import open_config
 
 class Calculator:
@@ -16,3 +17,13 @@ class Calculator:
         monthly_cost = monthly_interest + monthly_fee
         monthly_payment = monthly_interest_gross + monthly_fee + amortalization
         return monthly_interest, monthly_fee, amortalization, monthly_cost, monthly_payment
+
+    def pension_payment(self):
+        pension_net = self.config.pension_gross * (1 - self.config.pension_tax / 100)
+        return self.config.pension_tax, self.config.pension_gross, pension_net
+
+    def return_on_savings(self):
+        savings = self.config.savings
+        annual_growth = self.config.annual_growth
+        savings_at_pension = savings * math.pow ((1 + annual_growth/100), self.year_to_pension)
+        return annual_growth, savings, savings_at_pension

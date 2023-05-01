@@ -8,14 +8,6 @@ def cli(ctx, whatif):
     ctx.obj['whatif'] = whatif
 
 
-@cli.command("calculate")
-@click.pass_context
-def calculate(ctx):
-    calculator = Calculator()
-    print(f"savings: {calculator.config.savings} kr")
-    print(f"year to pension: {calculator.year_to_pension}")
-
-
 @cli.command("accomodation")
 @click.pass_context
 def accomodation(ctx):
@@ -28,6 +20,30 @@ def accomodation(ctx):
     print("Amortalization: {} kr".format(fmt(amortalization)))
     print("Interest and fee (interest deduction): {} kr".format(fmt(monthly_cost)))
     print("Monthly gross payment, (amortalization and no interest deduction): {} kr".format(fmt(monthly_payment)))
+
+
+@cli.command("growth")
+@click.pass_context
+def growth(ctx):
+    calculator = Calculator()
+    annual_growth, savings, savings_at_pension = \
+        calculator.return_on_savings()
+    print("Annual growth: {:.1f}%".format(annual_growth))
+    print("Initial savings: {} kr".format(fmt(savings)))
+    print("Age of pension: {}".format(fmt(calculator.config.age_of_pension)))
+    print("Savings at pension: {} kr".format(fmt(savings_at_pension)))
+
+
+
+@cli.command("pension_payment")
+@click.pass_context
+def pension_payment(ctx):
+    calculator = Calculator()
+    pension_tax, pension_gross, pension_net = calculator.pension_payment()
+    print("Pension tax: {:.1f}%".format(pension_tax))
+    print("Gross pension: {} kr".format(fmt(pension_gross)))
+    print("Net pension: {} kr".format(fmt(pension_net)))
+
 
 def fmt(amount):
     fmt_amount = "{:,.0f}".format(amount)
