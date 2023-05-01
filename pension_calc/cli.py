@@ -1,3 +1,4 @@
+from os import walk
 import click
 from pension_calc.calculator import Calculator
 
@@ -12,26 +13,29 @@ def cli(ctx, whatif):
 @click.pass_context
 def accomodation(ctx):
     calculator = Calculator()
-    monthly_interest, monthly_fee, amortalization, monthly_cost, monthly_payment = \
-        calculator.accomodation_cost()
+    a = calculator.accomodation_cost()
     print("Current interest: {:.1f}%".format(calculator.config.interest_current))
-    print("Monthly interest (interest deduction): {} kr".format(fmt(monthly_interest)))
-    print("monthly_fee: {} kr".format(fmt(monthly_fee)))
-    print("Amortalization: {} kr".format(fmt(amortalization)))
-    print("Interest and fee (interest deduction): {} kr".format(fmt(monthly_cost)))
-    print("Monthly gross payment, (amortalization and no interest deduction): {} kr".format(fmt(monthly_payment)))
+    print("Monthly interest (interest deduction): {} kr".format(fmt(a.monthly_interest)))
+    print("monthly_fee: {} kr".format(fmt(a.monthly_fee)))
+    print("Amortalization: {} kr".format(fmt(a.amortalization)))
+    print("Interest and fee (interest deduction): {} kr".format(fmt(a.monthly_cost)))
+    print("Monthly gross payment, (amortalization and no interest deduction): {} kr" \
+            .format(fmt(a.monthly_payment)))
 
 
 @cli.command("growth")
 @click.pass_context
 def growth(ctx):
     calculator = Calculator()
-    annual_growth, savings, savings_at_pension = \
-        calculator.return_on_savings()
-    print("Annual growth: {:.1f}%".format(annual_growth))
-    print("Initial savings: {} kr".format(fmt(savings)))
+    g = calculator.return_on_savings()
+    print("Annual growth: {:.1f}%".format(g.annual_growth))
+    print("Initial savings: {} kr".format(fmt(g.savings)))
     print("Age of pension: {}".format(fmt(calculator.config.age_of_pension)))
-    print("Savings at pension: {} kr".format(fmt(savings_at_pension)))
+    print("Monthly saving rate: {} kr".format(fmt(calculator.config.monthly_saving)))
+    print("Total monthly payment at pension: {} kr".format(fmt(g.total_monthly_payment)))
+    print("Return on monthly savings at pension: {} kr".format(fmt(g.return_from_monthly)))
+    print("Return on initial savings at pension: {} kr".format(fmt(g.return_on_initial)))
+    print("Savings at pension: {} kr".format(fmt(g.savings_at_pension)))
 
 
 
@@ -39,10 +43,10 @@ def growth(ctx):
 @click.pass_context
 def pension_payment(ctx):
     calculator = Calculator()
-    pension_tax, pension_gross, pension_net = calculator.pension_payment()
-    print("Pension tax: {:.1f}%".format(pension_tax))
-    print("Gross pension: {} kr".format(fmt(pension_gross)))
-    print("Net pension: {} kr".format(fmt(pension_net)))
+    p = calculator.pension_payment()
+    print("Pension tax: {:.1f}%".format(p.pension_tax))
+    print("Gross pension: {} kr".format(fmt(p.pension_gross)))
+    print("Net pension: {} kr".format(fmt(p.pension_net)))
 
 
 def fmt(amount):
