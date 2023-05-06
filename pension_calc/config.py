@@ -25,3 +25,4 @@ class Config:
         self.pension_tax = config_dict["pension_tax"]
         self.monthly_saving = config_dict["monthly_saving"]
         self.age_of_death = config_dict["age_of_death"]
+        self.expenses_apart_from_accomodation= config_dict["expenses_apart_from_accomodation"]

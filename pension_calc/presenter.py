@@ -1,6 +1,6 @@
 class Presenter:
     @staticmethod
-    def accomodation(a):
+    def accomodation_now(a):
         print("Current interest: {:.1f}%".format(a.interest_current))
         print("Monthly interest (interest deduction): {} kr".format(fmt(a.monthly_interest)))
         print("monthly_fee: {} kr".format(fmt(a.monthly_fee)))
@@ -21,6 +21,16 @@ class Presenter:
                 .format(fmt(a.loan_after_inflation_no_amo)))
         print("Loan at pension acconting both inflation and amortalization: {} kr"\
                 .format(fmt(a.loan_at_pension)))
+        print("Monthly cost for accomodation at pension (fee + interest with deduction): {} kr" \
+                .format(fmt(a.monthly_cost)))
+
+    @staticmethod
+    def balance(b):
+        print("Income after pension (pension + savings): {} kr".format(fmt(b.income)))
+        print("Accomondation cost after pension: {} kr".format(fmt(b.rent)))
+        print("Expenses after pension, apart from accomodation: {} kr". \
+                format(fmt(b.expenses_apart_from_accomodation)))
+        print("Monthly balance: {} kr".format(fmt(b.balance)))
 
     @staticmethod
     def growth(g):

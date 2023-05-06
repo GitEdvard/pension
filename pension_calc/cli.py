@@ -15,7 +15,7 @@ def cli(ctx, whatif):
 def accomodation(ctx):
     calculator = Calculator()
     a = calculator.accomodation_cost_now()
-    ctx.obj["presenter"].accomodation(a)
+    ctx.obj["presenter"].accomodation_now(a)
 
 
 @cli.command("accomodation_pension")
@@ -41,6 +41,13 @@ def payment(ctx):
     calculator = Calculator()
     p = calculator.pension_payment()
     ctx.obj["presenter"].payment(p)
+
+@cli.command("balance")
+@click.pass_context
+def balance(ctx):
+    calculator = Calculator()
+    p = calculator.balance()
+    ctx.obj["presenter"].balance(p)
 
 
 def cli_main():

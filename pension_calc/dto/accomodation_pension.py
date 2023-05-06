@@ -6,3 +6,4 @@ class AccomodationPension:
         self.loan_after_inflation_no_amo = None
         self.loan_at_pension = None
         self.loan_size = None
+        self.monthly_cost = None

@@ -5,6 +5,7 @@ from pension_calc.dto.accomodation import Accomodation
 from pension_calc.dto.growth import Growth
 from pension_calc.dto.pension_payment import PensionPayment
 from pension_calc.dto.accomodation_pension import AccomodationPension
+from pension_calc.dto.balance import Balance
 
 class Calculator:
     def __init__(self):
@@ -35,8 +36,12 @@ class Calculator:
         r = 1 - a.inflation / 100
         a.loan_after_inflation_no_amo = \
                 a.loan_size * math.pow(r, self.year_to_pension)
+        # Calculate with geometric series on amortalization due to inflation
         a.loan_at_pension = a.loan_after_inflation_no_amo - a.amortalization * 12 \
                 * (1 - math.pow(r, self.year_to_pension)) / (1 - r)
+        a.monthly_fee = self.config.monthly_fee
+        a.monthly_cost = a.monthly_fee * 1.15 \
+                + a.loan_at_pension * a.interest_pension / 100 / 12 * 0.7
         return a
 
     def pension_payment(self):
@@ -49,6 +54,16 @@ class Calculator:
         number_years = p.age_of_death - self.config.age_of_pension
         p.monthly_payment_from_savings = g.savings_at_pension / number_years / 12
         return p
+
+    def balance(self):
+        b = Balance()
+        b.expenses_apart_from_accomodation = self.config.expenses_apart_from_accomodation
+        p = self.pension_payment()
+        b.income = p.pension_net + p.monthly_payment_from_savings
+        a = self.accomodation_cost_pension()
+        b.rent = a.monthly_cost
+        b.balance = b.income - b.expenses_apart_from_accomodation - b.rent
+        return b
 
     def return_on_savings(self):
         g = Growth()
