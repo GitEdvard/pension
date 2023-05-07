@@ -1,6 +1,7 @@
 import click
 from pension_calc.calculator import Calculator
 from pension_calc.presenter import Presenter
+from pension_calc.reporter import Reporter
 
 @click.group()
 @click.option('--whatif/--not-whatif', default=False)
@@ -48,6 +49,15 @@ def balance(ctx):
     calculator = Calculator()
     p = calculator.balance()
     ctx.obj["presenter"].balance(p)
+
+
+@cli.command("report")
+@click.argument("filename")
+@click.pass_context
+def report(ctx, filename):
+    reporter = Reporter()
+    reporter.generate(filename)
+
 
 
 def cli_main():

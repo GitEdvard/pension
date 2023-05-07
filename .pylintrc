@@ -1,5 +1,5 @@
 [develop]
 
 disable=consider-using-f-string, missing-function-docstring, missing-module-docstring, missing-class-docstring
-good-names=r,g,p,a,e,b
+good-names=a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z
 min-public-methods=0
