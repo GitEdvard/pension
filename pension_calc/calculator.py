@@ -1,6 +1,6 @@
 import datetime
 import math
-from pension_calc.config import open_config
+from pension_calc.config import CONFIG
 from pension_calc.dto.accomodation import Accomodation
 from pension_calc.dto.growth import Growth
 from pension_calc.dto.pension_payment import PensionPayment
@@ -9,7 +9,7 @@ from pension_calc.dto.balance import Balance
 
 class Calculator:
     def __init__(self):
-        self.config = open_config()
+        self.config = CONFIG
         today = datetime.date.today()
         current_year = today.year
         self.year_to_pension = 1971 + self.config.age_of_pension - current_year
