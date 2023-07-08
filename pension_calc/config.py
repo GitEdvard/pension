@@ -27,6 +27,7 @@ class Config:
         self.monthly_saving = config_dict["monthly_saving"]
         self.age_of_death = config_dict["age_of_death"]
         self.expenses_apart_from_accomodation= config_dict["expenses_apart_from_accomodation"]
+        self.backup_catalog = config_dict["backup_catalog"]
 
     def __repr__(self):
         info = [

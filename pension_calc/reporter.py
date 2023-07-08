@@ -1,4 +1,5 @@
 import os
+import shutil
 from contextlib import redirect_stdout
 from pension_calc.calculator import Calculator
 from pension_calc.definitions import PACKAGE_DIR
@@ -49,3 +50,5 @@ class Reporter:
                 print("------------------------------------------------")
                 print(CONFIG)
                 print("")
+        backup_file_path = os.path.join(CONFIG.backup_catalog, file_name)
+        shutil.copyfile(path, backup_file_path)
