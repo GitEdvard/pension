@@ -11,7 +11,11 @@ from pension_calc.config import CONFIG
 class Reporter:
     @staticmethod
     def generate(identifier):
-        file_name = identifier + "_" + Reporter.today() + ".txt"
+        if identifier is None:
+            identifier = ""
+        else:
+            identifier = identifier + "_"
+        file_name = identifier + Reporter.today() + ".txt"
         path= os.path.join(PACKAGE_DIR, "output", file_name)
         calculator = Calculator()
         presenter = Presenter()
