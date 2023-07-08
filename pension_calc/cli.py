@@ -52,13 +52,11 @@ def balance(ctx):
 
 
 @cli.command("report")
-@click.argument("filename")
+@click.argument("identifier")
 @click.pass_context
-def report(ctx, filename):
+def report(ctx, identifier):
     reporter = Reporter()
-    reporter.generate(filename)
-
-
+    reporter.generate(identifier)
 
 def cli_main():
     cli(obj={})
